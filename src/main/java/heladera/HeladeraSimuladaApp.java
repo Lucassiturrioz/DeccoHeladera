@@ -7,7 +7,7 @@ public class HeladeraSimuladaApp {
 
     public static void main(String[] args) {
         // Iniciar Javalin en el puerto 7000
-        Javalin app = Javalin.create().start(7000);
+        Javalin app = Javalin.create().start(8080);
 
         // Página principal que servirá el archivo HTML desde la carpeta 'views'
         app.get("/", ctx -> {

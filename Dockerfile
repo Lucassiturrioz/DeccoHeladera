@@ -16,5 +16,6 @@ WORKDIR /app
 COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar # Copiar el archivo JAR desde la etapa de construcción
 # Establecer el puerto por defecto
 ENV PORT=8080
-EXPOSE 8080                 # Exponer el puerto 8080
+EXPOSE 8080                 # Exponer el puerto
 ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
+
