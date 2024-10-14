@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeccoHeladera: Simulación de Heladera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Color de fondo suave */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px; /* Añadir un padding para dispositivos móviles */
+        }
+
+        h1 {
+            background-color: #0288d1; /* Color de fondo del título */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px; /* Limitando el ancho del título */
+        }
+
+        .heladera-container {
+            background-color: #ffffff; /* Color de fondo de la heladera */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 400px; /* Ancho máximo para la heladera */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 5px solid #0288d1; /* Borde simula el marco de la heladera */
+            position: relative;
+        }
+
+        .heladera-container:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #81d4fa, #0288d1); /* Gradiente que simula la luz de la heladera */
+            z-index: -1; /* Asegurarse de que el fondo esté detrás */
+        }
+
+        .form-container {
+            background-color: #fff; /* Color de fondo del formulario */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Aumentar tamaño de fuente */
+        }
+
+        button {
+            background-color: #0288d1; /* Color del botón */
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #01579b; /* Color al pasar el mouse */
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #0288d1; /* Color del título de los formularios */
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px; /* Reducir tamaño del título en pantallas pequeñas */
+                padding: 15px; /* Ajustar padding */
+            }
+
+            .heladera-container {
+                width: 100%; /* Ajustar ancho de la heladera */
+            }
+
+            .form-container {
+                padding: 15px; /* Ajustar padding en formularios */
+            }
+
+            select, input, button {
+                font-size: 14px; /* Reducir tamaño de fuente */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>DeccoHeladera: Simulación de Heladera</h1>
+
+<!-- Contenedor de la heladera -->
+<div class="heladera-container">
+
+    <!-- Formulario para enviar una alerta -->
+    <div class="form-container">
+        <div class="title">Enviar Alerta</div>
+        <form action='/enviar-alerta' method='post'>
+            Selecciona el Tipo de Alerta:
+            <select name='tipoAlerta' required>
+                <option value='TEMPERATURA'>Temperatura</option>
+                <option value='FRAUDE'>Fraude</option>
+                <option value='FALLA_EN_CONEXION'>Falla en Conexión</option>
+            </select>
+            Selecciona la Heladera:
+            <select name='id' required>
+                <option value='1'>Heladera 1</option>
+                <option value='2'>Heladera 2</option>
+                <option value='3'>Heladera 3</option>
+            </select>
+            <button type='submit'>Enviar Alerta</button>
+        </form>
+    </div>
+
+    <!-- Formulario para enviar temperatura -->
+    <div class="form-container">
+        <div class="title">Enviar Temperatura</div>
+        <form action='/enviar-temperatura' method='post'>
+            Selecciona la Heladera:
+            <select name='id' required>
+                <option value='1'>Heladera 1</option>
+                <option value='2'>Heladera 2</option>
+                <option value='3'>Heladera 3</option>
+            </select>
+            Temperatura (°C): <input type='number' name='value' required>
+            <button type='submit'>Enviar Temperatura</button>
+        </form>
+    </div>
+
+    <!-- Formulario para enviar solicitud de apertura -->
+    <div class="form-container">
+        <div class="title">Solicitud de Apertura</div>
+        <form action='/solicitud-apertura' method='post'>
+            Selecciona la Heladera:
+            <select name='id' required>
+                <option value='1'>Heladera 1</option>
+                <option value='2'>Heladera 2</option>
+                <option value='3'>Heladera 3</option>
+            </select>
+            <button type='submit'>Enviar Solicitud Apertura</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
