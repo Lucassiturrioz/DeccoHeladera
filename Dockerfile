@@ -15,7 +15,7 @@ FROM openjdk:18-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar # Copiar el archivo JAR desde la etapa de construcción
 # Establecer el puerto por defecto
-ENV PORT=8080
-EXPOSE 8080                 # Exponer el puerto
+ENV PORT=7000
+EXPOSE 7000                 # Exponer el puerto 7000
 ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
 
