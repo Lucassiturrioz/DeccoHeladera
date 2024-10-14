@@ -18,4 +18,3 @@ COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar # 
 ENV PORT=7000
 EXPOSE 7000                 # Exponer el puerto 7000
 ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
-
