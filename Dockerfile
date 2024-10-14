@@ -6,7 +6,7 @@ FROM maven:3.8.6-openjdk-18 AS build
 WORKDIR /app
 COPY pom.xml .               # Copiar el archivo de configuración de Maven
 COPY src ./src               # Copiar el código fuente de la aplicación
-RUN mvn clean package -DskipTests # Compilar y empaquetar la aplicación, omitiendo las pruebas
+RUN mvn clean package assembly:single -DskipTests # Compilar y empaquetar la aplicación
 
 #
 # Etapa de empaquetado
@@ -14,8 +14,9 @@ RUN mvn clean package -DskipTests # Compilar y empaquetar la aplicación, omitie
 FROM openjdk:18-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar # Copiar el archivo JAR desde la etapa de construcción
-# Establecer el puerto por defecto
-ENV PORT=8080
-EXPOSE 8080                 # Exponer el puerto
-ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
 
+# Establecer el puerto por defecto
+ENV PORT=8080                # Cambia esto si decides usar 8080
+EXPOSE 8080                     # Asegúrate de que coincida con el puerto en el que se ejecuta la aplicación
+
+ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
