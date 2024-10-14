@@ -1,22 +1,18 @@
-# syntax = docker/dockerfile:1.2 
-#
-# Etapa de construcción
+# Build stage
 #
 FROM maven:3.8.6-openjdk-18 AS build
 WORKDIR /app
-COPY pom.xml .               # Copiar el archivo de configuración de Maven
-COPY src ./src               # Copiar el código fuente de la aplicación
-RUN mvn clean package assembly:single -DskipTests # Compilar y empaquetar la aplicación
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package assembly:single -DskipTests
 
-#
-# Etapa de empaquetado
-#
+
 FROM openjdk:18-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar # Copiar el archivo JAR desde la etapa de construcción
+COPY --from=build /app/target/HeladeraSimuladaApp.jar HeladeraSimuladaApp.jar
 
-# Establecer el puerto por defecto
-ENV PORT=8080                # Cambia esto si decides usar 8080
-EXPOSE 8080                     # Asegúrate de que coincida con el puerto en el que se ejecuta la aplicación
 
-ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"] # Comando de inicio para ejecutar la aplicación
+ENV PORT=8080               
+EXPOSE 8080                     
+
+ENTRYPOINT ["java", "-jar", "HeladeraSimuladaApp.jar"]
