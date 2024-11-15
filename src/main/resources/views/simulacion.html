@@ -158,7 +158,7 @@
 
     <!-- Formulario para enviar solicitud de apertura -->
     <div class="form-container">
-        <div class="title">Solicitud de Apertura</div>
+        <div class="title">Solicitud de Alimento</div>
         <form action='/solicitud-apertura' method='post'>
             Selecciona la Heladera:
             <select name='id' required>
@@ -166,7 +166,8 @@
                 <option value='2'>Heladera 2</option>
                 <option value='3'>Heladera 3</option>
             </select>
-            <button type='submit'>Enviar Solicitud Apertura</button>
+            Numero de tarjeta <input type='number' name='tarjeta' required>
+            <button type='submit'>Quitar Alimento</button>
         </form>
     </div>
 

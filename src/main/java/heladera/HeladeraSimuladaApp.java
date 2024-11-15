@@ -51,14 +51,13 @@ public class HeladeraSimuladaApp {
             }
         });
 
-        // Endpoint que simula el envío de una solicitud de apertura con heladeraId dinámico
         app.post("/solicitud-apertura", ctx -> {
             String heladeraId = ctx.formParam("id");
             JSONObject json = new JSONObject();
-            json.put("type", "solicitud-apertura");
+            json.put("type", "solicitud-alimento");
             json.put("heladeraId", heladeraId);
-            json.put("fechaApertura", "2024-10-13T10:00:00");
-            json.put("fechaLimite", "2024-10-13T12:00:00");
+            json.put("tarjeta", ctx.formParam("tarjeta"));
+
 
             try {
                 // Pasar el id de la heladera a enviarMensajeRabbitMQ
